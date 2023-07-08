@@ -6,11 +6,14 @@ using UnityEngine.Rendering;
 [RequireComponent(typeof(SphereCollider))]
 public abstract class Cat : MonoBehaviour
 {
+	[Tooltip("How much it costs to purchase the cat")]
 	[SerializeField] int cost = 10;
 
 	// Attacks
 	float cooldownTimer = 0;
+	[Tooltip("Time between attacks")]
 	[SerializeField] protected float attackCooldown = 0.5f;
+	[Tooltip("Damage to do when attacking")]
 	[SerializeField] protected int damage = 5;
 
 	// Targeting

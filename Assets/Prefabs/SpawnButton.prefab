@@ -323,6 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <UnitType>k__BackingField: 0
   purchaseCost: 10
+  button: {fileID: 1617124357479136673}
   counter: {fileID: 1617124357632995441}
   cost: {fileID: 1152497541729224730}
 --- !u!1 &2836694580726773109

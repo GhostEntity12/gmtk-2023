@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-	int damage = 1;
-	float speed = 1;
+	protected int damage;
+	protected float speed;
 
-	public void Setup(int damage, float speed, Quaternion rotation)
+	public virtual void Setup(int damage, float speed, Quaternion rotation)
 	{
 		this.damage = damage;
 		this.speed = speed;
