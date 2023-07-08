@@ -17,6 +17,8 @@ public class CatGinger : Cat
 
 	private void OnDrawGizmos()
 	{
+		Gizmos.color = new Color(1, 1, 1, 0.5f);
+		Gizmos.DrawSphere(transform.position, GetComponent<SphereCollider>().radius);
 		Gizmos.color = new(0, 0.6f, 0, 0.5f);
 		Gizmos.DrawSphere(transform.TransformPoint(spawnPointOffset), 0.12f);
 	}
