@@ -32,7 +32,6 @@ public abstract class Cat : MonoBehaviour
 	{
 		// Removed all destroyed (null) units from the list
 		unitsInRange.RemoveAll(u => u.unit == null);
-		u = TargetUnit;
 		if (TargetUnit)
 		{
 			// Look at the target and reset the x/z rotation
