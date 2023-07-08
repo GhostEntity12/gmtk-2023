@@ -11,7 +11,6 @@ public class UnitPath : MonoBehaviour
 	public Vector3 GetWayPointByIndex(int index)
 	{
 		if (index >= PathLength) index = PathLength - 1;
-		Debug.Log($"{index}/{PathLength}");
 		return wayPoints[index];
 	}
 

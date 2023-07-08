@@ -1,27 +1,51 @@
 using System;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UnitSpawnButton : MonoBehaviour
 {
 	[field: SerializeField] public GameManager.UnitTypes UnitType { get; private set; }
 	[SerializeField] int purchaseCost = 10;
+	[SerializeField] Button button;
 	[SerializeField] TextMeshProUGUI counter;
 	[SerializeField] TextMeshProUGUI cost;
 	int multiplier = 1;
 	public int ActualCost => purchaseCost * multiplier;
+
+	GameManager.GameState gameState;
+
+	private void Awake()
+	{
+		GameManager.OnGameStateChanged += OnGameStateChanged;
+	}
+
+	private void OnDestroy()
+	{
+		GameManager.OnGameStateChanged -= OnGameStateChanged;
+	}
+
 	private void Update()
 	{
-		if (Input.GetKey(KeyCode.LeftControl))
+		switch (gameState)
 		{
-			multiplier = 5;
-		}
-		else
-		{
-			multiplier = 1;
+			case GameManager.GameState.Preparation:
+				if (Input.GetKey(KeyCode.LeftControl))
+				{
+					multiplier = 5;
+				}
+				else
+				{
+					multiplier = 1;
+				}
+				UpdatePurchaseCost();
+				break;
+			case GameManager.GameState.Wave:
+				break;
+			default:
+				break;
 		}
 
-		UpdatePurchaseCost();
 	}
 
 	public void OnClick()
@@ -34,6 +58,8 @@ public class UnitSpawnButton : MonoBehaviour
 				break;
 			case GameManager.GameState.Wave:
 				GameManager.Instance.ClickedSpawn(this);
+				GameManager.Instance.TryGetUnit(UnitType, out _, out int count);
+				button.interactable = count > 0;
 				break;
 		}
 	}
@@ -46,7 +72,27 @@ public class UnitSpawnButton : MonoBehaviour
 	public void UpdatePurchaseCost()
 	{
 		cost.SetText($"${ActualCost}");
-		cost.color = ActualCost > GameManager.Instance.Funds.AvailableCurrency ? Color.red : Color.white;
+		bool canPurchase = ActualCost < GameManager.Instance.Funds.AvailableCurrency;
+		cost.color = canPurchase ? Color.white: Color.red;
+		button.interactable = canPurchase;
+	}
+
+	void OnGameStateChanged(GameManager.GameState state)
+	{
+		gameState = state;
+		switch (gameState)
+		{
+			case GameManager.GameState.Preparation:
+				SetCostVisibility(true);
+				break;
+			case GameManager.GameState.Wave:
+				SetCostVisibility(false);
+				GameManager.Instance.TryGetUnit(UnitType, out _, out int count);
+				button.interactable = count > 0; 
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void SetCostVisibility(bool visible)

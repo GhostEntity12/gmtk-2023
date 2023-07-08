@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5133566007653389884}
   - component: {fileID: 2717714580718543704}
   m_Layer: 6
-  m_Name: BasicUnit
+  m_Name: AttractiveUnit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -119,9 +119,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fa94196fb56939488124f6750a603c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <UnitType>k__BackingField: 0
+  <UnitType>k__BackingField: 1
   speed: 1
   health: 10
+  <Attractiveness>k__BackingField: 2
 --- !u!54 &2717714580718543704
 Rigidbody:
   m_ObjectHideFlags: 0
