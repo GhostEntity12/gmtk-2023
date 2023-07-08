@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
 	public static event GameStateChanged OnGameStateChanged;
 
 	// Enums
-	public enum UnitTypes { Basic, Attractive }
+	public enum UnitTypes { Feather, Fish, Mouse, PlasticBall, StringBall, Roomba }
 	public enum GameState { Preparation, Wave }
 
 	// Storage
@@ -138,7 +138,7 @@ public class GameManager : Singleton<GameManager>
 	public void SpawnUnit(Unit unit)
 	{
 		Unit u = Instantiate(unit, Path.GetWayPointByIndex(0), Quaternion.identity);
-		u.gameObject.name = Time.time.ToString();
+		//u.gameObject.name = Time.time.ToString();
 		spawnedUnits.Add(u);
 	}
 
