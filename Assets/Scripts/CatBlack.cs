@@ -11,7 +11,6 @@ public class CatBlack : Cat
 	protected override void Attack(Unit unit)
 	{
 		Debug.Log("attacking");
-		unitsInRange.RemoveAll(u => u.unit == null);
 		// get the units in the range
 		List<Unit> targetsInRange = unitsInRange.Where(u => Vector3.Angle(transform.forward, u.unit.transform.position - transform.position) < attackAngle &&
 															Vector3.Distance(transform.position, u.unit.transform.position) < attackRange)
@@ -23,7 +22,5 @@ public class CatBlack : Cat
 		{
 			target.TakeDamage(damage);
 		}
-
-		// Removed all destroyed (null) units from the list
 	}
 }

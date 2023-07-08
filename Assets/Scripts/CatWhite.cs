@@ -15,13 +15,16 @@ public class CatWhite : Cat
 	{
 		for (int i = 0; i < attacksToMake; i++)
 		{
-			ProjectilePiercing p = Instantiate(projectilePrefab);
+			Vector3 spawnPoint = transform.TransformPoint(spawnPointOffset) + Vector3.right * ((-(spacing / 2) * (attacksToMake - 1)) + (i * spacing));
+			ProjectilePiercing p = Instantiate(projectilePrefab, spawnPoint, Quaternion.identity);
 			p.Setup(damage, projectileSpeed, transform.rotation, pierceDepth);
 		}
 	}
 
 	private void OnDrawGizmos()
 	{
+		Gizmos.color = new Color(1, 1, 1, 0.5f);
+		Gizmos.DrawSphere(transform.position, GetComponent<SphereCollider>().radius);
 		Gizmos.color = new(0, 0.6f, 0, 0.5f);
 
 		for (int i = 0; i < attacksToMake; i++)
