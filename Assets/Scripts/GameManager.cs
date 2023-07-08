@@ -1,29 +1,53 @@
 using System;
 using System.Collections.Generic;
+using System.Transactions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : Singleton<GameManager>
 {
-	[Serializable]
-	public enum UnitTypes { Basic }
+	// Events
+	public delegate void GameStateChanged(GameState state);
+	public static event GameStateChanged OnGameStateChanged;
+
+	// Enums
+	public enum UnitTypes { Basic, Attractive }
 	public enum GameState { Preparation, Wave }
+
+	// Storage
+	readonly List<GroupSpawn> groupSpawns = new();
+	readonly Dictionary<UnitTypes, int> purchasedUnits = new();
+	readonly List<Unit> spawnedUnits = new();
+	int UnitsInStorage { get
+		{
+			int total = 0;
+			foreach (int count in purchasedUnits.Values)
+			{
+				total += count;
+			}
+			return total;
+		} }
+
 	public GameState CurrentGameState = GameState.Preparation;
-	public UnitPath Path { get; private set; }
+
 	[SerializeField] List<Unit> units = new();
 
-	readonly List<GroupSpawn> groupSpawns = new();
+	public UnitPath Path { get; private set; }
 
-	readonly Dictionary<UnitTypes, int> purchasedUnits = new();
 	[field: SerializeField] public Funds Funds { get; private set; } = new Funds();
+
 
 	// Start is called before the first frame update
 	void Start()
 	{
+		// Update UI
 		Funds.UpdateText();
+
+		// Get path
 		Path = GetComponent<UnitPath>();
 
+		// Initialize dictionary
 		foreach (UnitTypes unitType in Enum.GetValues(typeof(UnitTypes)))
 		{
 			purchasedUnits.Add(unitType, 0);
@@ -46,28 +70,29 @@ public class GameManager : Singleton<GameManager>
 		}
 	}
 
-	void SetGameState(GameState gameState)
-	{
-		switch (gameState)
-		{
-			case GameState.Preparation:
-				break;
-			case GameState.Wave:
-				break;
-			default:
-				break;
-		}
-	}
-
+	/// <summary>
+	/// Runs every frame while in the preparation state
+	/// </summary>	
 	void UpdatePreparation()
 	{
 		return;
 	}
 
+	/// <summary>
+	/// Runs every frame while in the wave state
+	/// </summary>
 	void UpdateWave()
 	{
+		if (UnitsInStorage == 0 && spawnedUnits.Count == 0 && groupSpawns.Count == 0 )
+		{
+			// There are no more units remaining
+			ToggleGameState();
+		}
+
+		// Skip if no group spawns
 		if (groupSpawns.Count <= 0) return;
 
+		// Tick all group spawns and remove those that are empty
 		groupSpawns.RemoveAll(spawn => spawn.Tick());
 	}
 
@@ -112,10 +137,12 @@ public class GameManager : Singleton<GameManager>
 
 	public void SpawnUnit(Unit unit)
 	{
-		Instantiate(unit, Path.GetWayPointByIndex(0), Quaternion.identity);
+		Unit u = Instantiate(unit, Path.GetWayPointByIndex(0), Quaternion.identity);
+		u.gameObject.name = Time.time.ToString();
+		spawnedUnits.Add(u);
 	}
 
-	void SpawnUnitMultiple(Unit unit, int count)
+	private void SpawnUnitMultiple(Unit unit, int count)
 	{
 		groupSpawns.Add(new(unit, count));
 	}
@@ -135,5 +162,16 @@ public class GameManager : Singleton<GameManager>
 		}
 		Debug.LogError($"Unit Type {unitType} is missing from the list of possible units");
 		return false;
+	}
+
+	public void ToggleGameState()
+	{
+		CurrentGameState = (GameState)((int)(CurrentGameState + 1) % 2);
+		OnGameStateChanged?.Invoke(CurrentGameState);
+	}
+
+	public void RemoveUnit(Unit u)
+	{
+		spawnedUnits.Remove(u);
 	}
 }

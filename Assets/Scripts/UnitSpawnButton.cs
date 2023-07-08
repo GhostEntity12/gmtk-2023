@@ -10,6 +10,17 @@ public class UnitSpawnButton : MonoBehaviour
 	[SerializeField] TextMeshProUGUI cost;
 	int multiplier = 1;
 	public int ActualCost => purchaseCost * multiplier;
+
+	private void Awake()
+	{
+		GameManager.OnGameStateChanged += OnGameStateChanged;
+	}
+
+	private void OnDestroy()
+	{
+		GameManager.OnGameStateChanged -= OnGameStateChanged;
+	}
+
 	private void Update()
 	{
 		if (Input.GetKey(KeyCode.LeftControl))
@@ -47,6 +58,22 @@ public class UnitSpawnButton : MonoBehaviour
 	{
 		cost.SetText($"${ActualCost}");
 		cost.color = ActualCost > GameManager.Instance.Funds.AvailableCurrency ? Color.red : Color.white;
+	}
+
+	void OnGameStateChanged(GameManager.GameState state)
+	{
+		Debug.Log(state.ToString());
+		switch (state)
+		{
+			case GameManager.GameState.Preparation:
+				SetCostVisibility(true);
+				break;
+			case GameManager.GameState.Wave:
+				SetCostVisibility(false);
+				break;
+			default:
+				break;
+		}
 	}
 
 	public void SetCostVisibility(bool visible)
