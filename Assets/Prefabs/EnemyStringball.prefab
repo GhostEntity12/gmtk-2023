@@ -134,7 +134,7 @@ MonoBehaviour:
   motionType: 1
   <UnitType>k__BackingField: 4
   speed: 1
-  health: 10
+  health: 40
   <Attractiveness>k__BackingField: 1
   value: 1
   stunDuration: 2

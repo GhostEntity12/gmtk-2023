@@ -70,7 +70,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 10
   attackCooldown: 0.5
-  damage: 5
+  damage: 3
 --- !u!95 &9139112197646029504
 Animator:
   serializedVersion: 5

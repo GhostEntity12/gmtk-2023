@@ -50,8 +50,9 @@ MonoBehaviour:
   motionType: 2
   <UnitType>k__BackingField: 1
   speed: 1
-  health: 10
+  health: 25
   <Attractiveness>k__BackingField: 1
+  value: 1
 --- !u!65 &6025402536155219362
 BoxCollider:
   m_ObjectHideFlags: 0
