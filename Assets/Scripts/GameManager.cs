@@ -48,6 +48,8 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] TextMeshProUGUI startWaveButtonText;
 	[SerializeField] TextMeshProUGUI waveText;
 	[SerializeField] TextMeshProUGUI successesText;
+	
+	[field: SerializeField] public PreviewBox Preview { get; private set; }
 
 	// Start is called before the first frame update
 	void Start()
@@ -66,7 +68,7 @@ public class GameManager : Singleton<GameManager>
 			purchasedUnits.Add(unitType, 0);
 		}
 		AI.Funds.AddFunds(10);
-		Funds.AddFunds(100);
+		Funds.AddFunds(60);
 
 		AI.DoPlacing();
 	}

@@ -15,4 +15,20 @@ public class AICatTower : MonoBehaviour
     {
         Cat = Instantiate(c, catLocation);
     }
+
+	public void DisplayInfo()
+	{
+        if (Cat != null)
+        {
+    		GameManager.Instance.Preview.DisplayInfo(Cat.Header, Cat.Info);
+        }
+        else
+        {
+    		GameManager.Instance.Preview.DisplayInfo("Cat Tower", "An empty cat tower. A cat is bound to settle down here soon...");
+        }
+	}
+	public void ResetInfo()
+	{
+		GameManager.Instance.Preview.DisplayInfo("", "Highlight an item or cat for more info!");
+	}
 }

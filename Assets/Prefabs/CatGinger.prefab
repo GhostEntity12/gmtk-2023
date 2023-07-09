@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 1819578650680774169}
   - component: {fileID: 7351620301561320364}
   - component: {fileID: 4538785125885634612}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CatGinger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,6 +159,9 @@ MonoBehaviour:
   damage: 8
   stunShort: {fileID: 4763156149313374968}
   stunLong: {fileID: 8584110153764341846}
+  <Header>k__BackingField: Ginger Cat
+  <Info>k__BackingField: Not the brightest kitty in the room. Need to be careful
+    of the furballs constantly stuck in it's throat.
   projectilePrefab: {fileID: 8843372220659828771, guid: 90ba0ffc46c7c56429da8bba7ddbff2e,
     type: 3}
   projectileSpeed: 3

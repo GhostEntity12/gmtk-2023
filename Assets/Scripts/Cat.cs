@@ -27,6 +27,9 @@ public abstract class Cat : MonoBehaviour
 	protected Unit TargetUnit => unitsInRange.Count > 0 ? unitsInRange[0].unit : null;
 	protected float Radius => visionRange.radius;
 
+	[field: SerializeField] public string Header { get; private set; }
+	[field: SerializeField, TextArea(3, 5)] public string Info { get; private set; } 
+
 	private void Awake()
 	{
 		visionRange = GetComponent<SphereCollider>();

@@ -96,7 +96,7 @@ GameObject:
   - component: {fileID: 2833223628982628649}
   - component: {fileID: 5173168115103755918}
   - component: {fileID: 1025978205}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CatBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,6 +160,9 @@ MonoBehaviour:
   damage: 5
   stunShort: {fileID: 4862486562379241385}
   stunLong: {fileID: 7208767978638973095}
+  <Header>k__BackingField: Black Cat
+  <Info>k__BackingField: An extremely noisy cat. It's meows are a little discordant,
+    but somehow still cute.
   attackAngle: 22.5
   attackRange: 2
   particles: {fileID: 7565548447470739273}

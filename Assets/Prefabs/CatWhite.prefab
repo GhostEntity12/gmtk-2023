@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8066407162184955797}
   - component: {fileID: 8066407162184955795}
   - component: {fileID: 8066407162184955794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CatWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -74,6 +74,9 @@ MonoBehaviour:
   damage: 5
   stunShort: {fileID: 4937452407446481915}
   stunLong: {fileID: 712336374968141632}
+  <Header>k__BackingField: White Cat
+  <Info>k__BackingField: An extremely devious cat capable of launching claws across
+    the room. Watch out, they're sharp!
   projectilePrefab: {fileID: 4615266774873728806, guid: 835df2c74818abc4d8331fc6e67dccd8,
     type: 3}
   projectileSpeed: 5

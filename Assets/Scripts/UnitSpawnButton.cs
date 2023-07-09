@@ -15,6 +15,8 @@ public class UnitSpawnButton : MonoBehaviour
 
 	GameManager.GameState gameState;
 
+	[SerializeField] string header;
+	[SerializeField, TextArea(3, 5)] string info;
 	private void Awake()
 	{
 		GameManager.OnGameStateChanged += OnGameStateChanged;
@@ -98,5 +100,14 @@ public class UnitSpawnButton : MonoBehaviour
 	public void SetCostVisibility(bool visible)
 	{
 		cost.enabled = visible;
+	}
+
+	public void DisplayInfo()
+	{
+		GameManager.Instance.Preview.DisplayInfo(header, info);
+	}
+	public void ResetInfo()
+	{
+		GameManager.Instance.Preview.DisplayInfo("", "Highlight an item or cat for more info!");
 	}
 }

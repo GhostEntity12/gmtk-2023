@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 905032656886637613}
   - component: {fileID: 6603025890052184739}
   - component: {fileID: 9139112197646029504}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CatCalico
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75,6 +75,9 @@ MonoBehaviour:
   damage: 3
   stunShort: {fileID: 7896782953755770410}
   stunLong: {fileID: 6517373086688818534}
+  <Header>k__BackingField: Calico Cat
+  <Info>k__BackingField: This cat is only motivated by pawing at and attacking whatever's
+    in front of it. Be careful of the razor fast claws.
 --- !u!95 &9139112197646029504
 Animator:
   serializedVersion: 5
