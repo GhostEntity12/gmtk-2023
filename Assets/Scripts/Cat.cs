@@ -19,6 +19,7 @@ public abstract class Cat : MonoBehaviour
 	// Stun
 	bool isStunned = false;
 	float stunTimer;
+	[SerializeField] ParticleSystem stunShort, stunLong;
 
 	// Targeting
 	SphereCollider visionRange;
@@ -70,6 +71,14 @@ public abstract class Cat : MonoBehaviour
 	{
 		isStunned = true;
 		stunTimer = stunDuration;
+		if (stunDuration < 3)
+		{
+			stunShort.Play();
+		}
+		else
+		{
+			stunLong.Play();
+		}
 	}
 
 	// Targeting
