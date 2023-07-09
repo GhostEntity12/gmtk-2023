@@ -28,15 +28,21 @@ public class CatBlack : Cat
 		anim.SetTrigger("attack");
 		particles.Play();
 		// get the units in the range
-		List<Unit> targetsInRange = unitsInRange.Where(u => Vector3.Angle(transform.forward, u.unit.transform.position - transform.position) < attackAngle &&
-															Vector3.Distance(transform.position, u.unit.transform.position) < attackRange)
+		List<Unit> targetsInRange = unitsInRange.Where(u => Vector3.Angle(transform.forward, u.unit.transform.position - transform.position) < attackAngle)
 												.Select(u => u.unit)
 												.ToList();
+
+		Debug.Log(targetsInRange.Count);
 
 		// damage them
 		foreach (Unit target in targetsInRange)
 		{
 			target.TakeDamage(damage);
 		}
+	}
+
+	private void OnDrawGizmos()
+	{
+		Gizmos.DrawRay(transform.position, transform.forward);
 	}
 }

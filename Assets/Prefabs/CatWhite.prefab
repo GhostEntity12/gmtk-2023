@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8066407162184955797}
   - component: {fileID: 8066407162184955795}
   - component: {fileID: 8066407162184955794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: CatWhite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,6 +31,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8066407162987442766}
+  - {fileID: 4937452407446481912}
+  - {fileID: 712336374968141635}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -70,6 +72,11 @@ MonoBehaviour:
   <Cost>k__BackingField: 10
   attackCooldown: 0.5
   damage: 5
+  stunShort: {fileID: 4937452407446481915}
+  stunLong: {fileID: 712336374968141632}
+  <Header>k__BackingField: White Cat
+  <Info>k__BackingField: An extremely devious cat capable of launching claws across
+    the room. Watch out, they're sharp!
   projectilePrefab: {fileID: 4615266774873728806, guid: 835df2c74818abc4d8331fc6e67dccd8,
     type: 3}
   projectileSpeed: 5
@@ -161,3 +168,173 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &1659168237852594545
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8066407162184955797}
+    m_Modifications:
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.105
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2225964108220487231, guid: f30cb893957aaf64897643291a51d9a2,
+        type: 3}
+      propertyPath: m_Name
+      value: StunStarsLong
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: f30cb893957aaf64897643291a51d9a2, type: 3}
+--- !u!198 &712336374968141632 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 2225964108220487217, guid: f30cb893957aaf64897643291a51d9a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1659168237852594545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &712336374968141635 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2225964108220487218, guid: f30cb893957aaf64897643291a51d9a2,
+    type: 3}
+  m_PrefabInstance: {fileID: 1659168237852594545}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1001 &6111971786354015146
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 8066407162184955797}
+    m_Modifications:
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.105
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1177496942602195039, guid: e2f16fe4d2ff526498353893f954f141,
+        type: 3}
+      propertyPath: m_Name
+      value: StunStars
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e2f16fe4d2ff526498353893f954f141, type: 3}
+--- !u!4 &4937452407446481912 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1177496942602195026, guid: e2f16fe4d2ff526498353893f954f141,
+    type: 3}
+  m_PrefabInstance: {fileID: 6111971786354015146}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &4937452407446481915 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 1177496942602195025, guid: e2f16fe4d2ff526498353893f954f141,
+    type: 3}
+  m_PrefabInstance: {fileID: 6111971786354015146}
+  m_PrefabAsset: {fileID: 0}

@@ -19,12 +19,16 @@ public abstract class Cat : MonoBehaviour
 	// Stun
 	bool isStunned = false;
 	float stunTimer;
+	[SerializeField] ParticleSystem stunShort, stunLong;
 
 	// Targeting
 	SphereCollider visionRange;
 	protected List<(Unit unit, float timestamp)> unitsInRange = new();
 	protected Unit TargetUnit => unitsInRange.Count > 0 ? unitsInRange[0].unit : null;
 	protected float Radius => visionRange.radius;
+
+	[field: SerializeField] public string Header { get; private set; }
+	[field: SerializeField, TextArea(3, 5)] public string Info { get; private set; } 
 
 	private void Awake()
 	{
@@ -70,6 +74,14 @@ public abstract class Cat : MonoBehaviour
 	{
 		isStunned = true;
 		stunTimer = stunDuration;
+		if (stunDuration < 3)
+		{
+			stunShort.Play();
+		}
+		else
+		{
+			stunLong.Play();
+		}
 	}
 
 	// Targeting
