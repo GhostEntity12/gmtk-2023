@@ -6,7 +6,7 @@ using UnityEngine;
 public class CatBlack : Cat
 {
 	[SerializeField] float attackAngle = 22.5f; // note this is effectively doubled because it's the angle in both directions
-	[SerializeField] float attackRange = 2f; // note this is effectively doubled because it's the angle in both directions
+	[SerializeField] float attackRange = 2f;
 	[SerializeField] ParticleSystem particles;
 	Animator anim;
 

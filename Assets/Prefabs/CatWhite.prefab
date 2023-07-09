@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8066407162184955796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.1, z: 0}
+  m_LocalPosition: {x: 0, y: 0.01, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -75,7 +75,7 @@ MonoBehaviour:
   projectileSpeed: 5
   pierceDepth: 1
   attacksToMake: 1
-  spawnPointOffset: {x: -0.2, y: -0.1, z: 0.49}
+  spawnPointOffset: {x: -0.2, y: 0, z: 0.49}
   spacing: 0.1
 --- !u!1 &8066407162987442769
 GameObject:

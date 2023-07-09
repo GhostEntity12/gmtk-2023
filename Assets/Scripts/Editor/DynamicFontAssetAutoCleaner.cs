@@ -53,6 +53,7 @@ namespace TMProDynamicDataCleaner.Editor
 				Debug.LogError("Something went wrong while clearing dynamic font data. For more info look at log message above.");
 			}
 
+				Debug.Log("Cleared font data.");
 			return paths;
 		}
 	}
