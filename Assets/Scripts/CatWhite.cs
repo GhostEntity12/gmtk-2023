@@ -13,6 +13,7 @@ public class CatWhite : Cat
 
 	protected override void Attack(Unit unit)
 	{
+		audioSource.PlayOneShot(attackSound, 0.5f);
 		for (int i = 0; i < attacksToMake; i++)
 		{
 			Vector3 spawnPoint = transform.TransformPoint(spawnPointOffset) + Vector3.right * ((-(spacing / 2) * (attacksToMake - 1)) + (i * spacing));

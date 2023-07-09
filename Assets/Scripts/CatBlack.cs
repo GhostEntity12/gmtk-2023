@@ -26,6 +26,7 @@ public class CatBlack : Cat
 	protected override void Attack(Unit unit)
 	{
 		anim.SetTrigger("attack");
+		audioSource.PlayOneShot(attackSound, 0.5f);
 		particles.Play();
 		// get the units in the range
 		List<Unit> targetsInRange = unitsInRange.Where(u => Vector3.Angle(transform.forward, u.unit.transform.position - transform.position) < attackAngle)

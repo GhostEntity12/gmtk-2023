@@ -19,6 +19,7 @@ public class CatGinger : Cat
 	protected override void Attack(Unit unit)
 	{
 		anim.SetTrigger("attack");
+		audioSource.PlayOneShot(attackSound, 0.5f);
 		ProjectileAOE p = Instantiate(projectilePrefab, transform.TransformPoint(spawnPointOffset), Quaternion.identity);
 		p.Setup(damage, projectileSpeed, transform.rotation, aoeDamage, aoeRadius);
 	}

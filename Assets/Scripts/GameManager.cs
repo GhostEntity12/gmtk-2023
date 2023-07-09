@@ -57,6 +57,7 @@ public class GameManager : Singleton<GameManager>
 	
 	AudioSource audioSource;
 	[SerializeField] AudioClip sfxPurchase;
+	[SerializeField] AudioClip sfxButtonClick;
 
 
 	// Start is called before the first frame update
@@ -145,6 +146,7 @@ public class GameManager : Singleton<GameManager>
 				SpawnUnit(unit);
 			}
 			button.UpdateCounter(purchasedUnits[button.UnitType]);
+			audioSource.PlayOneShot(sfxButtonClick, 0.6f);
 		}
 	}
 
@@ -164,7 +166,7 @@ public class GameManager : Singleton<GameManager>
 			Funds.RemoveFunds(button.ActualCost);
 			button.UpdateCounter(purchasedUnits[button.UnitType]);
 			button.UpdatePurchaseCost();
-			audioSource.PlayOneShot(sfxPurchase);
+			audioSource.PlayOneShot(sfxPurchase, 0.6f);
 		}
 	}
 
@@ -250,5 +252,10 @@ public class GameManager : Singleton<GameManager>
 	void UpdateSuccessesText()
 	{
 		successesText.SetText($"Escaped toys: {successfulUnits}/{successesForVictory}");
+	}
+
+	public void PlayButtonClick()
+	{
+		audioSource.PlayOneShot(sfxButtonClick, 0.6f);
 	}
 }
