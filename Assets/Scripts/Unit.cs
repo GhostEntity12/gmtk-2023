@@ -65,7 +65,7 @@ public class Unit : MonoBehaviour
 		}
 	}
 
-	void Die()
+	protected virtual void Die()
 	{
 		GameManager.Instance.RemoveUnit(this);
 		Destroy(gameObject);

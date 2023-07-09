@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8200910836581175150}
-  - component: {fileID: 2516357859011521864}
+  - component: {fileID: 817537833772799142}
   - component: {fileID: 6972512082460972868}
   - component: {fileID: -5799974499955936170}
   m_Layer: 6
@@ -33,9 +33,9 @@ Transform:
   m_Children:
   - {fileID: 4106634987521852985}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2516357859011521864
+--- !u!114 &817537833772799142
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3298262104776276158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fa94196fb56939488124f6750a603c4, type: 3}
+  m_Script: {fileID: 11500000, guid: c9f315b08c08e7b4ebcf130098b6d582, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   motionType: 0
@@ -52,6 +52,9 @@ MonoBehaviour:
   speed: 1
   health: 10
   <Attractiveness>k__BackingField: 1
+  value: 1
+  stunDuration: 2
+  stunRange: 2
 --- !u!65 &6972512082460972868
 BoxCollider:
   m_ObjectHideFlags: 0
