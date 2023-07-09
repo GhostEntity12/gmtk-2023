@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class Funds
 {
-    public int AvailableCurrency { get; private set; } = 95;
+    public int AvailableCurrency { get; private set; }
     [SerializeField] TextMeshProUGUI display;
     
     public void AddFunds(int amount)
@@ -23,6 +23,7 @@ public class Funds
 
     public void UpdateText()
     {
-        display.SetText($"${AvailableCurrency}");
+        if (display)
+            display.SetText($"${AvailableCurrency}");
     }
 }

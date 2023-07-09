@@ -9,8 +9,16 @@ public class CatGinger : Cat
 	[SerializeField] int aoeDamage = 1;
 	[SerializeField] float aoeRadius = 1f;
 	[SerializeField] Vector3 spawnPointOffset;
+	Animator anim;
+
+	private void Start()
+	{
+		anim = GetComponent<Animator>();
+	}
+
 	protected override void Attack(Unit unit)
 	{
+		anim.SetTrigger("attack");
 		ProjectileAOE p = Instantiate(projectilePrefab, transform.TransformPoint(spawnPointOffset), Quaternion.identity);
 		p.Setup(damage, projectileSpeed, transform.rotation, aoeDamage, aoeRadius);
 	}
