@@ -34,6 +34,8 @@ public class GameManager : Singleton<GameManager>
 
 	[field: SerializeField] public List<AICatTower> Towers { get; private set; } = new();
 
+	[SerializeField] int moneyEachRoundPlayer = 50;
+	[SerializeField] int moneyEachRoundAI = 10;
 
 	// Start is called before the first frame update
 	void Start()
@@ -170,9 +172,10 @@ public class GameManager : Singleton<GameManager>
 	{
 		CurrentGameState = (GameState)((int)(CurrentGameState + 1) % 2);
 		OnGameStateChanged?.Invoke(CurrentGameState);
-		if (CurrentGameState== GameState.Preparation)
+		if (CurrentGameState == GameState.Preparation)
 		{
-			AI.Funds.AddFunds(5);
+			Funds.AddFunds(moneyEachRoundPlayer);
+			AI.Funds.AddFunds(moneyEachRoundAI);
 			AI.DoPlacing();
 		}
 	}
