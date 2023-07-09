@@ -68,7 +68,7 @@ public class UnitSpawnButton : MonoBehaviour
 
 	public void UpdateCounter(int value)
 	{
-		counter.SetText(value.ToString());
+		counter.SetText($"x{value}");
 	}
 	 
 	public void UpdatePurchaseCost()
@@ -108,6 +108,6 @@ public class UnitSpawnButton : MonoBehaviour
 	}
 	public void ResetInfo()
 	{
-		GameManager.Instance.Preview.DisplayInfo("", "Highlight an item or cat for more info!");
+		GameManager.Instance.Preview.ResetInfo();
 	}
 }
