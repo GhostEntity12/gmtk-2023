@@ -54,6 +54,9 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] GameObject victoryScreen;
 	[SerializeField] GameObject defeatScreen;
 	[SerializeField] CanvasGroup endscreenDarken;
+	
+	AudioSource audioSource;
+	[SerializeField] AudioClip sfxPurchase;
 
 
 	// Start is called before the first frame update
@@ -66,6 +69,7 @@ public class GameManager : Singleton<GameManager>
 		// Get objects
 		Path = GetComponent<UnitPath>();
 		AI = GetComponent<AICatPlacer>();
+		audioSource = GetComponent<AudioSource>();
 
 		// Initialize dictionary
 		foreach (UnitTypes unitType in Enum.GetValues(typeof(UnitTypes)))
@@ -160,6 +164,7 @@ public class GameManager : Singleton<GameManager>
 			Funds.RemoveFunds(button.ActualCost);
 			button.UpdateCounter(purchasedUnits[button.UnitType]);
 			button.UpdatePurchaseCost();
+			audioSource.PlayOneShot(sfxPurchase);
 		}
 	}
 
