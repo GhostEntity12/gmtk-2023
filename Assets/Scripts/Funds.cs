@@ -24,6 +24,6 @@ public class Funds
     public void UpdateText()
     {
         if (display)
-            display.SetText($"${AvailableCurrency}");
+            display.SetText($"<sprite=\"Button\" index=0>{AvailableCurrency}");
     }
 }
