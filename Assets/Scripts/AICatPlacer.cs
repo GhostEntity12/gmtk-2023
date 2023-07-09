@@ -12,8 +12,6 @@ public class AICatPlacer : MonoBehaviour
 	{
 		// Choose a random tower
 		AICatTower chosenTower = GameManager.Instance.Towers[Random.Range(0, GameManager.Instance.Towers.Count)];
-		Debug.Log(chosenTower, chosenTower);
-		Debug.Log(chosenTower.Cat);
 		if (chosenTower.Cat)
 		{
 			// upgrade the cat
