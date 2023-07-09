@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   motionType: 2
   <UnitType>k__BackingField: 2
-  speed: 1
+  speed: 1.5
   health: 30
   <Attractiveness>k__BackingField: 1
   value: 1
