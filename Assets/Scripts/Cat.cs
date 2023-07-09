@@ -16,6 +16,10 @@ public abstract class Cat : MonoBehaviour
 	[Tooltip("Damage to do when attacking")]
 	[SerializeField] protected int damage = 5;
 
+	// Stun
+	bool isStunned = false;
+	float stunTimer;
+
 	// Targeting
 	SphereCollider visionRange;
 	protected List<(Unit unit, float timestamp)> unitsInRange = new();
@@ -30,6 +34,15 @@ public abstract class Cat : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
+		if (isStunned)
+		{
+			stunTimer -= Time.deltaTime;
+			if (stunTimer <= 0)
+			{
+				isStunned = false;
+			}
+			return;
+		}
 		// Removed all destroyed (null) units from the list
 		unitsInRange.RemoveAll(u => u.unit == null);
 		if (TargetUnit)
@@ -52,6 +65,12 @@ public abstract class Cat : MonoBehaviour
 	}
 
 	protected abstract void Attack(Unit unit);
+
+	public void Stun(float stunDuration)
+	{
+		isStunned = true;
+		stunTimer = stunDuration;
+	}
 
 	// Targeting
 	private void OnTriggerEnter(Collider other)
