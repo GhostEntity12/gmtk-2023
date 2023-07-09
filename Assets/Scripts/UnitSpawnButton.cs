@@ -72,7 +72,7 @@ public class UnitSpawnButton : MonoBehaviour
 	public void UpdatePurchaseCost()
 	{
 		cost.SetText($"${ActualCost}");
-		bool canPurchase = ActualCost < GameManager.Instance.Funds.AvailableCurrency;
+		bool canPurchase = ActualCost <= GameManager.Instance.Funds.AvailableCurrency;
 		cost.color = canPurchase ? Color.white: Color.red;
 		button.interactable = canPurchase;
 	}

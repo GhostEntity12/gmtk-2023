@@ -16,6 +16,7 @@ public class Unit : MonoBehaviour
 	[field: SerializeField] public int Attractiveness { get; private set; } = 1;
 	Vector2 rotSpeedBounds = new(140f, 200f);
 	float rotSpeed = 2;
+	[SerializeField] int value = 1;
 
 	private void Start()
 	{
@@ -68,5 +69,6 @@ public class Unit : MonoBehaviour
 	{
 		GameManager.Instance.RemoveUnit(this);
 		Destroy(gameObject);
+		GameManager.Instance.AI.Funds.AddFunds(value);
 	}
 }

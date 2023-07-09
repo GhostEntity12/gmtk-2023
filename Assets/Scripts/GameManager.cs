@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Transactions;
 using TMPro;
 using UnityEngine;
@@ -16,18 +17,10 @@ public class GameManager : Singleton<GameManager>
 	public enum GameState { Preparation, Wave }
 
 	// Storage
-	readonly List<GroupSpawn> groupSpawns = new();
-	readonly Dictionary<UnitTypes, int> purchasedUnits = new();
-	readonly List<Unit> spawnedUnits = new();
-	int UnitsInStorage { get
-		{
-			int total = 0;
-			foreach (int count in purchasedUnits.Values)
-			{
-				total += count;
-			}
-			return total;
-		} }
+	readonly List<GroupSpawn> groupSpawns = new(); // Units part of a group spawn
+	readonly Dictionary<UnitTypes, int> purchasedUnits = new(); // Units that have been purchased but not sent
+	readonly List<Unit> spawnedUnits = new(); // Currently active units
+	int UnitsInStorage => purchasedUnits.Sum(u => u.Value);
 
 	public GameState CurrentGameState = GameState.Preparation;
 
@@ -37,6 +30,10 @@ public class GameManager : Singleton<GameManager>
 
 	[field: SerializeField] public Funds Funds { get; private set; } = new Funds();
 
+	public AICatPlacer AI { get; private set; }
+
+	[field: SerializeField] public List<AICatTower> Towers { get; private set; } = new();
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -44,14 +41,19 @@ public class GameManager : Singleton<GameManager>
 		// Update UI
 		Funds.UpdateText();
 
-		// Get path
+		// Get objects
 		Path = GetComponent<UnitPath>();
+		AI = GetComponent<AICatPlacer>();
 
 		// Initialize dictionary
 		foreach (UnitTypes unitType in Enum.GetValues(typeof(UnitTypes)))
 		{
 			purchasedUnits.Add(unitType, 0);
 		}
+		AI.Funds.AddFunds(10);	
+		Funds.AddFunds(100);
+
+		AI.DoPlacing();
 	}
 
 	// Update is called once per frame
@@ -168,6 +170,11 @@ public class GameManager : Singleton<GameManager>
 	{
 		CurrentGameState = (GameState)((int)(CurrentGameState + 1) % 2);
 		OnGameStateChanged?.Invoke(CurrentGameState);
+		if (CurrentGameState== GameState.Preparation)
+		{
+			AI.Funds.AddFunds(5);
+			AI.DoPlacing();
+		}
 	}
 
 	public void RemoveUnit(Unit u)

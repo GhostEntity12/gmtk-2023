@@ -32,5 +32,6 @@ public class ProjectileAOE : Projectile
 				u.TakeDamage(aoeDamage);
 			}
 		}
+		Destroy(gameObject);
 	}
 }

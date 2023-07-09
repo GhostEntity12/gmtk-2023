@@ -7,7 +7,7 @@ using UnityEngine.Rendering;
 public abstract class Cat : MonoBehaviour
 {
 	[Tooltip("How much it costs to purchase the cat")]
-	[SerializeField] int cost = 10;
+	[field: SerializeField] public int Cost { get; private set; } = 10;
 
 	// Attacks
 	float cooldownTimer = 0;
