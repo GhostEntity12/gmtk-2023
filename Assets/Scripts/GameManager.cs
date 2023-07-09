@@ -22,7 +22,7 @@ public class GameManager : Singleton<GameManager>
 	readonly List<Unit> spawnedUnits = new(); // Currently active units
 	int UnitsInStorage => purchasedUnits.Sum(u => u.Value);
 
-	public GameState CurrentGameState = GameState.Preparation;
+	public GameState CurrentGameState { get; private set; } = GameState.Preparation;
 
 	[SerializeField] List<Unit> units = new();
 
@@ -50,6 +50,11 @@ public class GameManager : Singleton<GameManager>
 	[SerializeField] TextMeshProUGUI successesText;
 	
 	[field: SerializeField] public PreviewBox Preview { get; private set; }
+
+	[SerializeField] GameObject victoryScreen;
+	[SerializeField] GameObject defeatScreen;
+	[SerializeField] CanvasGroup endscreenDarken;
+
 
 	// Start is called before the first frame update
 	void Start()
@@ -196,12 +201,14 @@ public class GameManager : Singleton<GameManager>
 		{
 			case GameState.Preparation:
 				currentWave++;
-				waveText.SetText($"Wave {currentWave + 1}/10");
 				if (currentWave >= maxWaves && !victory)
 				{
-					// Player loses
+					endscreenDarken.blocksRaycasts = true;
+					LeanTween.alphaCanvas(endscreenDarken, 1, 0.3f);
+					LeanTween.moveY(defeatScreen, 540, 0.5f).setEaseOutBack();
 					return;
 				}
+				waveText.SetText($"Wave {currentWave + 1}/{maxWaves}");
 				startWaveButton.interactable = true;
 				startWaveButtonText.SetText("Start wave!");
 				Funds.AddFunds(Mathf.FloorToInt(spentCurrency * currencyGainModifier));
@@ -230,7 +237,9 @@ public class GameManager : Singleton<GameManager>
 		if (successfulUnits >= successesForVictory)
 		{
 			victory = true;
-			Debug.Log("Victory");
+			endscreenDarken.blocksRaycasts = true;
+			LeanTween.alphaCanvas(endscreenDarken, 1, 0.3f);
+			LeanTween.moveY(victoryScreen, 540, 0.5f).setEaseOutBack();
 		}
 	}
 	void UpdateSuccessesText()

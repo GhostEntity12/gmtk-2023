@@ -29,6 +29,6 @@ public class AICatTower : MonoBehaviour
 	}
 	public void ResetInfo()
 	{
-		GameManager.Instance.Preview.DisplayInfo("", "Highlight an item or cat for more info!");
+        GameManager.Instance.Preview.ResetInfo();
 	}
 }
