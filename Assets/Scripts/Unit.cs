@@ -48,7 +48,13 @@ public class Unit : MonoBehaviour
 
 		if (Vector3.Distance(currentTarget, transform.position) < minDist)
 		{
-			if (CurrentPathIndex >= GameManager.Instance.Path.PathLength) return;
+			if (CurrentPathIndex >= GameManager.Instance.Path.PathLength)
+			{
+				GameManager.Instance.IncreaseSucesses();
+				GameManager.Instance.RemoveUnit(this);
+				Destroy(gameObject);
+				return;
+			}
 
 			CurrentPathIndex++;
 			currentTarget = GameManager.Instance.Path.GetWayPointByIndex(CurrentPathIndex);

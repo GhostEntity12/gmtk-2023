@@ -34,14 +34,27 @@ public class GameManager : Singleton<GameManager>
 
 	[field: SerializeField] public List<AICatTower> Towers { get; private set; } = new();
 
-	[SerializeField] int moneyEachRoundPlayer = 50;
+	int spentCurrency;
+	[SerializeField] float currencyGainModifier = 1.2f;
 	[SerializeField] int moneyEachRoundAI = 10;
+
+	int successfulUnits;
+	int currentWave;
+	[SerializeField] int successesForVictory = 10;
+	[SerializeField] int maxWaves = 10;
+	bool victory;
+
+	[SerializeField] Button startWaveButton;
+	[SerializeField] TextMeshProUGUI startWaveButtonText;
+	[SerializeField] TextMeshProUGUI waveText;
+	[SerializeField] TextMeshProUGUI successesText;
 
 	// Start is called before the first frame update
 	void Start()
 	{
 		// Update UI
 		Funds.UpdateText();
+		UpdateSuccessesText();
 
 		// Get objects
 		Path = GetComponent<UnitPath>();
@@ -52,7 +65,7 @@ public class GameManager : Singleton<GameManager>
 		{
 			purchasedUnits.Add(unitType, 0);
 		}
-		AI.Funds.AddFunds(10);	
+		AI.Funds.AddFunds(10);
 		Funds.AddFunds(100);
 
 		AI.DoPlacing();
@@ -61,16 +74,19 @@ public class GameManager : Singleton<GameManager>
 	// Update is called once per frame
 	void Update()
 	{
-		switch (CurrentGameState)
+		if (!victory)
 		{
-			case GameState.Preparation:
-				UpdatePreparation();
-				break;
-			case GameState.Wave:
-				UpdateWave();
-				break;
-			default:
-				break;
+			switch (CurrentGameState)
+			{
+				case GameState.Preparation:
+					UpdatePreparation();
+					break;
+				case GameState.Wave:
+					UpdateWave();
+					break;
+				default:
+					break;
+			}
 		}
 	}
 
@@ -79,7 +95,7 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>	
 	void UpdatePreparation()
 	{
-		return;
+		startWaveButton.interactable = UnitsInStorage > 0;
 	}
 
 	/// <summary>
@@ -87,7 +103,7 @@ public class GameManager : Singleton<GameManager>
 	/// </summary>
 	void UpdateWave()
 	{
-		if (UnitsInStorage == 0 && spawnedUnits.Count == 0 && groupSpawns.Count == 0 )
+		if (UnitsInStorage == 0 && spawnedUnits.Count == 0 && groupSpawns.Count == 0)
 		{
 			// There are no more units remaining
 			ToggleGameState();
@@ -133,6 +149,7 @@ public class GameManager : Singleton<GameManager>
 			{
 				purchasedUnits[button.UnitType]++;
 			}
+			spentCurrency += button.ActualCost;
 			Funds.RemoveFunds(button.ActualCost);
 			button.UpdateCounter(purchasedUnits[button.UnitType]);
 			button.UpdatePurchaseCost();
@@ -172,16 +189,50 @@ public class GameManager : Singleton<GameManager>
 	{
 		CurrentGameState = (GameState)((int)(CurrentGameState + 1) % 2);
 		OnGameStateChanged?.Invoke(CurrentGameState);
-		if (CurrentGameState == GameState.Preparation)
+
+		switch (CurrentGameState)
 		{
-			Funds.AddFunds(moneyEachRoundPlayer);
-			AI.Funds.AddFunds(moneyEachRoundAI);
-			AI.DoPlacing();
+			case GameState.Preparation:
+				currentWave++;
+				waveText.SetText($"Wave {currentWave + 1}/10");
+				if (currentWave >= maxWaves && !victory)
+				{
+					// Player loses
+					return;
+				}
+				startWaveButton.interactable = true;
+				startWaveButtonText.SetText("Start wave!");
+				Funds.AddFunds(Mathf.FloorToInt(spentCurrency * currencyGainModifier));
+				spentCurrency = 0;
+				AI.Funds.AddFunds(moneyEachRoundAI);
+				AI.DoPlacing();
+				break;
+			case GameState.Wave:
+				startWaveButton.interactable = false;
+				startWaveButtonText.SetText("Waiting for wave\nto end...");
+				break;
+			default:
+				break;
 		}
 	}
 
 	public void RemoveUnit(Unit u)
 	{
 		spawnedUnits.Remove(u);
+	}
+
+	public void IncreaseSucesses()
+	{
+		successfulUnits++;
+		UpdateSuccessesText();
+		if (successfulUnits >= successesForVictory)
+		{
+			victory = true;
+			Debug.Log("Victory");
+		}
+	}
+	void UpdateSuccessesText()
+	{
+		successesText.SetText($"Escaped toys: {successfulUnits}/{successesForVictory}");
 	}
 }
