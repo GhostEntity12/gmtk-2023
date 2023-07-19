@@ -28,11 +28,15 @@ public abstract class Cat : MonoBehaviour
 	protected float Radius => visionRange.radius;
 
 	[field: SerializeField] public string Header { get; private set; }
-	[field: SerializeField, TextArea(3, 5)] public string Info { get; private set; } 
+	[field: SerializeField, TextArea(3, 5)] public string Info { get; private set; }
+
+	protected AudioSource audioSource;
+	[SerializeField] protected AudioClip attackSound;
 
 	private void Awake()
 	{
 		visionRange = GetComponent<SphereCollider>();
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	// Update is called once per frame

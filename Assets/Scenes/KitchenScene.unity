@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028352, g: 0.22571376, b: 0.30692244, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -527,6 +527,7 @@ MonoBehaviour:
   defeatScreen: {fileID: 106995770}
   endscreenDarken: {fileID: 1988969895}
   sfxPurchase: {fileID: 8300000, guid: 8dfd558b41940e74e87d763da695e787, type: 3}
+  sfxButtonClick: {fileID: 0}
 --- !u!4 &322122011
 Transform:
   m_ObjectHideFlags: 0
@@ -1618,6 +1619,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2467485946142365505, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3706517007080897738, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1641,22 +1647,22 @@ PrefabInstance:
     - target: {fileID: 3963637102106417192, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchorMax.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963637102106417192, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchorMin.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3963637102106417192, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 822.23
       objectReference: {fileID: 0}
     - target: {fileID: 3963637102106417192, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -50
       objectReference: {fileID: 0}
     - target: {fileID: 4677879115530034758, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
@@ -1773,6 +1779,26 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 322122010}
+    - target: {fileID: 5150920697748416343, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150920697748416343, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5150920697748416343, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 322122008}
+    - target: {fileID: 5150920697748416343, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6240304958489212537, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
       propertyPath: m_AnchorMax.y
@@ -1952,6 +1978,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7363317969744373376, guid: df10c215bd053ef44a9535c119851230,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: L2
       objectReference: {fileID: 0}
     - target: {fileID: 8914640191331290030, guid: df10c215bd053ef44a9535c119851230,
         type: 3}
@@ -1973,7 +2004,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 202992598182510339, guid: df10c215bd053ef44a9535c119851230, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
