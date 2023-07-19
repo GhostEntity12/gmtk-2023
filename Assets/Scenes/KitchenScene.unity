@@ -527,7 +527,7 @@ MonoBehaviour:
   defeatScreen: {fileID: 106995770}
   endscreenDarken: {fileID: 1988969895}
   sfxPurchase: {fileID: 8300000, guid: 8dfd558b41940e74e87d763da695e787, type: 3}
-  sfxButtonClick: {fileID: 0}
+  sfxButtonClick: {fileID: 8300000, guid: 129acb190bb36ba43858a5a0ee58b66e, type: 3}
 --- !u!4 &322122011
 Transform:
   m_ObjectHideFlags: 0

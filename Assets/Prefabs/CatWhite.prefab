@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 10
-  attackCooldown: 0.5
+  attackCooldown: 0.3
   damage: 2
   stunShort: {fileID: 4937452407446481915}
   stunLong: {fileID: 712336374968141632}
