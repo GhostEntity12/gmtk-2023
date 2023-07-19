@@ -157,7 +157,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <Cost>k__BackingField: 10
   attackCooldown: 1.5
-  damage: 8
+  damage: 6
   stunShort: {fileID: 4763156149313374968}
   stunLong: {fileID: 8584110153764341846}
   <Header>k__BackingField: Ginger Cat
